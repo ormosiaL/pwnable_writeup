@@ -43,8 +43,10 @@ r.interactive()
 ```
 
 ida 基础：<p>
-ESP：栈指针寄存器(extended stack pointer)，其内存放着一个指针，该指针永远指向系统栈最上面一个栈帧的栈顶。（64位机器变为RSP）
-EBP：基址指针寄存器(extended base pointer)，其内存放着一个指针，该指针永远指向系统栈最上面一个栈帧的栈底。（64位机器变为RBP）
+ESP：栈指针寄存器(extended stack pointer)，其内存放着一个指针，该指针永远指向系统栈最上面一个栈帧的栈顶。（64位机器变为RSP）<p>
+EBP：基址指针寄存器(extended base pointer)，其内存放着一个指针，该指针永远指向系统栈最上面一个栈帧的栈底。（64位机器变为RBP）<p>
+rax: 存放返回值 <p>
+rsi,rdi,rcx,rdx: 传递函数参数 <p>
 
 You'll allways find this code at the beginning of functions:
 .text:00401150                 push    ebp
